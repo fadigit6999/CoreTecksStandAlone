@@ -1,6 +1,30 @@
-﻿@{
-    ViewData["Title"] = "Privacy Policy";
+﻿@section Head
+{
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy - CoreTechs.Web</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CoreTechs.Web.styles.css" asp-append-version="true" />
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+@await Html.PartialAsync("~/Views/Shared/Home/_Header.cshtml")
+
+<div class="container">
+    <main role="main" class="pb-3">
+        <h1>Privacy</h1>
+
+        <p>Use this page to detail your site's privacy policy.</p>
+    </main>
+</div>
+
+
+
+@await Html.PartialAsync("~/Views/Shared/Home/_Footer.cshtml")
+
+@section Scripts
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+}
