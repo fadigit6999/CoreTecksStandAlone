@@ -1,3 +1,6 @@
+using CoreTechs.Web.Models.Services;
+using CoreTechs.Web.WebHelper;
+
 namespace CoreTechs.Web
 {
     public class Program
@@ -8,6 +11,13 @@ namespace CoreTechs.Web
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            #region Register Service for controller and view
+            builder.Services.AddScoped<CoreTechs.Web.Models.Data.DataContextDB>(provider =>
+    new CoreTechs.Web.Models.Data.DataContextDB(WebConfig.DatabaseConnection()));
+
+            builder.Services.AddScoped<EmployeeService>();
+            #endregion
 
             var app = builder.Build();
 
