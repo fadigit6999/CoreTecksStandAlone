@@ -43,7 +43,7 @@ namespace CoreTechs.Web.Controllers
         [HttpGet]
         public ActionResult CreateEmployee()
         {
-            return View(new Employees());
+            return PartialView("~/Views/Shared/Home/_EmployeeModal.cshtml", new Employees());
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

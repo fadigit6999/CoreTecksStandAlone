@@ -18,13 +18,16 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <a href="/home/CreateEmployee" class="btn btn-default">Create Employee</a>
+            @* <a href="/home/CreateEmployee" class="btn btn-default">Create Employee</a> *@
+            <button id="registerEmployee" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                Register
+            </button>
         </div>
+
 
     </div>
 
     <div class="panel panel-default" style="margin-top:10px">
-
 
         <!-- Table -->
         <table class="table table-bordered table-striped table-hover">
@@ -58,11 +61,28 @@
     </div>
 </div>
 
+<!-- The Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Register Emloyees</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            @* this part will get employee form using jquery *@
+            <div id="employeeModalForm" class="modal-body"></div>
+        </div>
+    </div>
+</div>
+
 @await Html.PartialAsync("~/Views/Shared/Home/_Footer.cshtml")
 
 @section Scripts
 {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    @* bootstrap 5 *@
+@* bootstrap 5 *@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/Employee.js"></script>
 }
