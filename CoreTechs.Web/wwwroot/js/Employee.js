@@ -1,41 +1,43 @@
-﻿$(document).ready(function() {
+﻿$(document).ready(function () {
+    //Click button to get partial view from views to getemployee modal
     $("#registerEmployee").click(function () {
-        // Send data to ASP.NET Core MVC Controller using AJAX
+        //ASP.NET Core MVC Controller using AJAX
         $.ajax({
             type: "GET",
             url: "/Home/CreateEmployee",  // Change to your actual controller method
             success: function (response) {
-                $("#employeeModalForm").html(response);
+                $("#employeeModalForm").html(response);//getting partial view form of employee
+                IntializeEmployee();
+
             },
             error: function () {
                 alert("Error saving employee.");
             }
         });
     });
+    
+})
 
 
+function IntializeEmployee() {
     $("#submitEmployee").click(function (e) {
-        debugger;
+       /* debugger;*/
         var formData = {
             Name: $("input[name='Name']").val(),
             Phone: $("input[name='Phone']").val(),
             Address: $("input[name='Address']").val(),
-            Salary: $("input[name='Salary']").val(),
-            __RequestVerificationToken: $("input[name='__RequestVerificationToken']").val() // Include AntiForgery Token
+            Salary: $("input[name='Salary']").val() // Include AntiForgery Token
         };
 
         $.ajax({
             type: "POST",
-            url: "/Employee/CreateEmployee",  // Ensure this matches your controller route
-            data: formData,
+            url: "/Home/CreateEmployee",  // Ensure this matches your controller route
+            contentType: "application/json",
+            data: JSON.stringify(formData),  // Convert to JSON string
             success: function (response) {
                 if (response.success) {
-                    alert(response.message); // Show success message
                     $("#Employeeform")[0].reset(); // Reset form fields
-                    window.location.href = "/Home/GetEmployee/1"; // Redirect to Employee List
-                } else {
-                    alert(response.message); // Show error message
-                    console.log(response.errors); // Debug validation errors
+                    //load employees list
                 }
             },
             error: function () {
@@ -44,6 +46,4 @@
         });
 
     });
-})
-
-
+}

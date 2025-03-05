@@ -45,9 +45,9 @@ namespace CoreTechs.Web.Controllers
         {
             return PartialView("~/Views/Shared/Home/_EmployeeModal.cshtml", new Employees());
         }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult CreateEmployee(Employees model)
+        public IActionResult CreateEmployee([FromBody] Employees model)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +56,7 @@ namespace CoreTechs.Web.Controllers
                     // Example: Saving the employee to the database
                     _employeeService.AddEmployees(model.Name, model.Phone, model.Address, model.Salary);
 
-                    return Redirect("/Home/GetEmployee/1"); // Redirect to the Index or Employee List page
+                    return Json(new { success = true }); // Redirect to the Index or Employee List page
                 }
                 catch (Exception ex)
                 {
